@@ -1,0 +1,47 @@
+﻿Generate Swagger Client (Open Api)
+
+Step 1:
+Open Swagger Url in browser.
+http://localhost:17225/swagger/index.html
+
+Step 2:
+Click on following link
+/swagger/v1/swagger.json
+
+Step 3:
+This will open in next tab and save the json file in the client solution. (Store in debug folder.)
+
+Step 4:
+Generate OpenApi client code using Connected Service.
+
+4.1 Select the solution -> Right Click on Solution -> Select the Add -> Selected the Connected Service
+4.2 Go to Service Referances (OpenApi, gRPC) -> Click on Add button.
+4.3 Add service referance dialog box will open.
+4.4 Select OpenApi Service. -> Click on next button.
+4.5 Select File -> Select swagger.json file which store in debug folder.
+4.6 Click on Finish button. Package will download automatically and OpenApi client code will generate.
+4.7.Close the dialog.
+
+The code will generate on Obj folder, under the name SwaggerClient.
+
+Step 5:
+Go to program.cs file, Consume web api using OpenApi standard.
+
+var httpClient = new HttpClient();
+            var swaggerClient = new swaggerClient("http://localhost:17225/", httpClient);
+
+            var getCustomerList = await swaggerClient?.GetcustomerAsync();
+
+            foreach (CustomerModel customerModel in getCustomerList)
+            {
+                Console.WriteLine(customerModel.FullName);
+            }
+
+            var flag = await swaggerClient?.AddAsync(new CustomerModel()
+            {
+                FullName = "Kishor Naik",
+                EmailId = "kishor.naik011.net@gmail.com",
+                MobileNo = "9111111111"
+            });
+
+            Console.WriteLine(flag);
