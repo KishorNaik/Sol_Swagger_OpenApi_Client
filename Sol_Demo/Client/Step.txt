@@ -45,3 +45,11 @@ var httpClient = new HttpClient();
             });
 
             Console.WriteLine(flag);
+
+
+Step 6:
+Debug from client to Server.
+    6.1 Right click on main solution, Select the Property.
+    6.2 Select Multiple StartUp Project.
+    6.3 Select Action as Start. 
+    6.4 Define Order of project. (Note: Server should start first then client)
